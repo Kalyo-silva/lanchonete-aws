@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lanchonete AWS Cloud</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f7f9fc; }
-        .lanche-card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
-        button { background-color: #ff9900; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        button:hover { background-color: #ec7211; }
-        #carrinho { background: #232f3e; color: white; padding: 20px; border-radius: 8px; margin-top: 20px; }
-    </style>
+    <link rel="stylesheet" href="layout.css">
 </head>
 <body>
-
-    <h1>🍔 AWS Burger - Cardápio</h1>
+    <div id="header">
+        <h1>🍔 AWS Burger - Pedidos</h1>
+        <div>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="cozinha.html">Cozinha</a>
+        </div>    
+    </div>
     <div id="cardapio-container">Carregando opções saborosas...</div>
 
     <div id="carrinho">
         <h2>🛒 Seu Pedido</h2>
+        <div class="labelInput">
+            <label for="cliente">Informe o Seu Nome</label>
+            <input type="text" name="cliente" id="cliente">
+        </div>
         <p id="itens-carrinho">Nenhum item selecionado.</p>
         <h3>Total: R$ <span id="total-pedido">0.00</span></h3>
         <button id="btn-finalizar" onclick="enviarPedido()" disabled>Enviar Pedido para a Fila (SQS)</button>
     </div>
 
-    <script src="app.js"></script>
+    <script src="script/env.js"></script>
+    <script src="script/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,202 @@
+body {
+    font-family: Arial, sans-serif; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: #f7f9fc; 
+}
+
+#cardapio-container{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+}
+
+#carrinho { 
+    background: #232f3e; 
+    color: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin-top: 20px; 
+}
+
+.labelInput{
+    display: flex; 
+    flex-direction: 
+    column; gap: 10px;
+}
+
+#novoLanche{
+    margin-bottom: 25px;
+}
+
+input{ 
+    border: 1px solid white; 
+    border-radius: 4px; 
+    padding: 2px 4px; 
+    font-size: medium; 
+    width: fit-content;
+}
+
+
+.lanche-card {
+    background: white; 
+    padding: 15px; 
+    margin-bottom: 10px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: end;
+}
+
+.cardapio-card{
+    background: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button-group{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+
+#header{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+a{
+    background-color: #ff9900; 
+    padding: 10px; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    color: white; 
+    cursor: pointer; 
+    font-weight: bold;
+}
+
+a:hover {
+    background-color: #ec7211;
+}
+
+.pedido-card{  
+    background-color: #232f3e;
+    border-radius: 10px;
+    padding: 10px 25px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pedido-card h3{
+    margin-bottom: 0;
+}
+
+.pedido-card sub{
+    color: #7d8c9e;
+    font-style: italic;
+}
+
+.pedido-card strong{
+    color: #ff9900;
+}
+
+button {
+    background-color: #ff9900; 
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+}
+
+button:hover { 
+    background-color: #ec7211;
+}
+
+.pedido-card button{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#pedidos-container{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+}
+
+
+#modal-remove{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    display: none;  
+}
+
+
+#modal-create{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+
+#modal-create #formCreate{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#modal-create label{
+    font-weight: bold;
+}
+
+
+#modal-create .labelInput{
+    gap: 2px;
+}
+
+#modal-create input, #modal-create textarea{
+    border: 1px solid #ff9900;
+    border-radius: 5px;
+    font-size: medium;
+    width: inherit;
+    padding: 5px 10px;
+}
+
+#modal-container{
+    background: #232f3e;
+    padding: 15px 25px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#modal-container p{
+    margin-top: 0;
+}

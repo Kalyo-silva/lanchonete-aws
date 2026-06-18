@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanchonete AWS Cloud</title>
+    <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+    <div id="header">
+        <h1>🍔 AWS Burger - Cardápio</h1>    
+        <div>
+            <a href="cozinha.html">Cozinha</a>
+            <a href="index.html">Pedidos</a>
+        </div>
+    </div>
+
+    <button id="novoLanche" onclick="openCreate()">+ Novo Lanche</button>
+
+    <div id="cardapio-container">Carregando opções saborosas...</div>
+
+
+    <div id="modal-remove">
+        <div id="modal-container">
+            <h3>Confirmar remoção</h3>
+
+            <p>você tem certeza que deseja excluir <strong id="lanche-nome">Lanche</strong>?</p>
+
+            <div class="button-group">
+                <button onclick="requestLanche()">Confirmar</button>
+                <button style="background-color: #232f3e; border: 2px solid #ff9900; color: #ff9900;" onclick="closeModal('modal-remove')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="modal-create">
+        <div id="modal-container">
+            <h3 id="lanche-title">Criar novo Lanche</h3>
+
+            <div id="formCreate" method="POST">
+                <input type="hidden" name="tipo" id="tipo">
+                <input type="hidden" name="id" id="id" value="0">
+
+                <div class="labelInput">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome">
+                </div>
+                
+                <div class="labelInput">
+                    <label for="descricao">Descrição</label>
+                    <textarea name="descricao" id="descricao" rows="5" cols="50"></textarea>
+                </div>
+                
+                <div class="labelInput">
+                    <label for="preco">Preço</label>
+                    <input type="number" min="0.01" step="0.01" name="preco" id="preco">
+                </div>
+
+                <div class="button-group">
+                    <button id="create-button" onclick="requestLanche()">Criar</button>
+                    <button style="background-color: #232f3e; border: 2px solid #ff9900; color: #ff9900;" onclick="closeModal('modal-create')">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/env.js"></script>
+    <script src="script/cardapio.js"></script>
+</body>
+</html>

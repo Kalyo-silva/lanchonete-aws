@@ -7,15 +7,15 @@ app.use(cors());
 app.use(express.json());
 
 // ----------- Simulando dados que depois virão do Amazon RDS ------------- //
-// const cardapioFake = [
-//     { id: 1, nome: "Hambúrguer Serverless", preco: 28.50, descricao: "Grelhado na hora com queijo cheddar derretido." },
-//     { id: 2, nome: "Batata Frita SQS", preco: 14.00, descricao: "Batatas crocantes que chegam em fila e quentinhas." },
-//     { id: 3, nome: "Suco de Laranja Dynamo", preco: 9.00, descricao: "Suco natural feito de forma ultra rápida." }
-// ];
-// app.get('/cardapio', (req, res) => {
-//     console.log("Front-end solicitou o cardápio!");
-//     res.json(cardapioFake);
-// });
+//  const cardapioFake = [
+//      { id: 1, nome: "Hambúrguer Serverless", preco: 28.50, descricao: "Grelhado na hora com queijo cheddar derretido." },
+//      { id: 2, nome: "Batata Frita SQS", preco: 14.00, descricao: "Batatas crocantes que chegam em fila e quentinhas." },
+//      { id: 3, nome: "Suco de Laranja Dynamo", preco: 9.00, descricao: "Suco natural feito de forma ultra rápida." }
+//  ];
+//  app.get('/cardapio', (req, res) => {
+//      console.log("Front-end solicitou o cardápio!");
+//      res.json(cardapioFake);
+//  });
 
 
 // Configuração da conexão com o Amazon RDS usando variáveis de ambiente
@@ -40,6 +40,49 @@ app.get('/cardapio', async (req, res) => {
     }
 });
 
+app.post('/cardapio', async (req, res) => {
+    try{
+        const {id, nome, descricao, preco, tipo} = req.body;
+
+        if (tipo == 'create'){
+            const sql = "INSERT INTO cardapio (nome, preco, descricao) VALUES ($1,$2,$3) RETURNING *;";
+            const values = [nome, preco, descricao];
+
+            const resultado = await pool.query(sql, values);
+            
+            return res.status(201).json({
+                msg : "Registro Inserido com sucesso!"
+            });
+        }
+        else if (tipo == 'edit'){
+            const sql = "UPDATE CARDAPIO SET NOME = $1, PRECO = $2, DESCRICAO = $3 WHERE ID = $4;";
+            const values = [nome, preco, descricao, id];
+
+            const resultado = await pool.query(sql, values);
+            
+            return res.status(200).json({
+                msg : "Registro Alterado com sucesso!"
+            });
+        }
+        else if (tipo == 'destroy'){
+            const sql = "DELETE FROM CARDAPIO WHERE ID = $1;";
+            const values = [id];
+
+            const resultado = await pool.query(sql, values);
+            
+            return res.status(200).json({
+                msg : "Registro Removido com sucesso!"
+            });
+        }
+        else{
+            console.error("Parâmetros inválidos para a requisição:");
+            res.status(500).json({ erro: "Erro ao modificar dados no banco de dados." });
+        }
+    } catch (erro) {
+        console.error("Erro ao consultar o RDS:", erro);
+        res.status(500).json({ erro: "Erro ao alterar dados no banco de dados." });
+    }
+});
 
 
 async function inicializarBanco() {
@@ -59,7 +102,8 @@ async function inicializarBanco() {
                 INSERT INTO cardapio (nome, preco, descricao) VALUES 
                 ('Hambúrguer Nuvem AWS', 32.00, 'Grelhado no fogo com queijo prato e molho especial.'),
                 ('Batata Frita Kubernetes', 16.00, 'Crocantes por fora, macias por dentro.'),
-                ('Combo Combo Pod', 45.00, 'Lanche + Batata + Refri.');
+                ('Combo Cluster', 45.00, 'Lanche + Batata + Refri.');
+                ('Suco Dynamo', 8.00, 'Rápido e Refrescante.');
             `);
             console.log("Banco de dados inicializado com lanches de teste!");
         }
