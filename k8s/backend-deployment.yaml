@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: kalyo/backend-lanchonete:v1
+          image: kalyo/backend-lanchonete:v3
           ports:
             - containerPort: 3000
           env:
