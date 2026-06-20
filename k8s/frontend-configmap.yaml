@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: frontend-config
+  namespace: lanchonete
+
+data:
+
+  env.js: |
+    window.env = {
+      URL_BACKEND: "/api/cardapio",
+      URL_API_GATEWAY: "https://xxxx.execute-api.us-east-1.amazonaws.com/pedidos"
+    };
