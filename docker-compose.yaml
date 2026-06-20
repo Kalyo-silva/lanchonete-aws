@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend-estoque
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: estoque
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: frontend-estoque
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
