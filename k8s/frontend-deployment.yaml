@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: kalyo/frontend-lanchonete:v4
+        image: kalyo/frontend-lanchonete:v5
         ports:
         - containerPort: 80
         volumeMounts:
         - name: frontend-config
-          mountPath: /usr/share/nginx/html/script/env.js
+          mountPath: /usr/local/apache2/htdocs/script/env.js
           subPath: env.js
       volumes:
       - name: frontend-config
