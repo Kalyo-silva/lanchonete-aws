@@ -1,5 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: frontend
   namespace: lanchonete
@@ -14,7 +15,15 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: frontend
-          image: kalyo/frontend-lanchonete:v3
-          ports:
-            - containerPort: 80
+      - name: frontend
+        image: kalyo/frontend-lanchonete:v4
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: frontend-config
+          mountPath: /usr/share/nginx/html/script/env.js
+          subPath: env.js
+      volumes:
+      - name: frontend-config
+        configMap:
+          name: frontend-config
