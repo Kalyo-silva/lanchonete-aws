@@ -10,5 +10,5 @@ data:
   env.js: |
     window.env = {
       URL_BACKEND: "/api/cardapio",
-      URL_API_GATEWAY: "https://xxxx.execute-api.us-east-1.amazonaws.com/pedidos"
+      URL_API_GATEWAY: "SEU_API_GATEWAY/pedidos"
     };
